@@ -1,0 +1,22 @@
+
+div {
+  margin-right: 5%;
+  margin-left: 5%
+}
+
+@media (min-width: 700px) {
+  div {
+    margin-right: 25%;
+    margin-left: 25%
+  }
+
+}
+
+span {
+  position: relative;
+  float: right;
+}
+
+mat-panel-description {
+  display: unset;
+}

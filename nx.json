@@ -21,5 +21,13 @@
       }
     }
   },
-  "projects": {}
+  "projects": {
+    "personal-page-front": {
+      "tags": []
+    },
+    "personal-page-front-e2e": {
+      "tags": [],
+      "implicitDependencies": ["personal-page-front"]
+    }
+  }
 }

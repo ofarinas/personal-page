@@ -1,0 +1,15 @@
+img.expand {
+  width: 10em !important;
+}
+
+img {
+  max-width: 60%;
+  height: auto;
+}
+
+@media (min-width: 500px) {
+  img {
+    max-width: 30% !important;
+  }
+
+}

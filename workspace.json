@@ -1,7 +1,140 @@
 {
   "version": 1,
-  "projects": {},
+  "projects": {
+    "personal-page-front": {
+      "projectType": "application",
+      "schematics": {},
+      "root": "apps/personal-page-front",
+      "sourceRoot": "apps/personal-page-front/src",
+      "prefix": "personal-page",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/apps/personal-page-front",
+            "index": "apps/personal-page-front/src/index.html",
+            "main": "apps/personal-page-front/src/main.ts",
+            "polyfills": "apps/personal-page-front/src/polyfills.ts",
+            "tsConfig": "apps/personal-page-front/tsconfig.app.json",
+            "aot": true,
+            "assets": [
+              "apps/personal-page-front/src/favicon.ico",
+              "apps/personal-page-front/src/assets"
+            ],
+            "styles": ["apps/personal-page-front/src/styles.css"],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/personal-page-front/src/environments/environment.ts",
+                  "with": "apps/personal-page-front/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "personal-page-front:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "personal-page-front:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "personal-page-front:build"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "apps/personal-page-front/tsconfig.app.json",
+              "apps/personal-page-front/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!apps/personal-page-front/**/*"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "apps/personal-page-front/jest.config.js",
+            "tsConfig": "apps/personal-page-front/tsconfig.spec.json",
+            "passWithNoTests": true,
+            "setupFile": "apps/personal-page-front/src/test-setup.ts"
+          }
+        }
+      }
+    },
+    "personal-page-front-e2e": {
+      "root": "apps/personal-page-front-e2e",
+      "sourceRoot": "apps/personal-page-front-e2e/src",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/personal-page-front-e2e/cypress.json",
+            "tsConfig": "apps/personal-page-front-e2e/tsconfig.e2e.json",
+            "devServerTarget": "personal-page-front:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "personal-page-front:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": ["apps/personal-page-front-e2e/tsconfig.e2e.json"],
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/personal-page-front-e2e/**/*"
+            ]
+          }
+        }
+      }
+    }
+  },
   "cli": {
-    "defaultCollection": "@nrwl/workspace"
-  }
+    "defaultCollection": "@nrwl/angular"
+  },
+  "schematics": {
+    "@nrwl/angular:application": {
+      "unitTestRunner": "jest",
+      "e2eTestRunner": "cypress"
+    },
+    "@nrwl/angular:library": {
+      "unitTestRunner": "jest"
+    }
+  },
+  "defaultProject": "personal-page-front"
 }
