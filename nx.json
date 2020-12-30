@@ -28,6 +28,9 @@
     "personal-page-front-e2e": {
       "tags": [],
       "implicitDependencies": ["personal-page-front"]
+    },
+    "personal-page-back": {
+      "tags": []
     }
   }
 }

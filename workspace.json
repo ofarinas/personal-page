@@ -122,6 +122,57 @@
           }
         }
       }
+    },
+    "personal-page-back": {
+      "root": "apps/personal-page-back",
+      "sourceRoot": "apps/personal-page-back/src",
+      "projectType": "application",
+      "prefix": "personal-page-back",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/node:build",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "outputPath": "dist/apps/personal-page-back",
+            "main": "apps/personal-page-back/src/main.ts",
+            "tsConfig": "apps/personal-page-back/tsconfig.app.json",
+            "assets": ["apps/personal-page-back/src/assets"]
+          },
+          "configurations": {
+            "production": {
+              "optimization": true,
+              "extractLicenses": true,
+              "inspect": false,
+              "fileReplacements": [
+                {
+                  "replace": "apps/personal-page-back/src/environments/environment.ts",
+                  "with": "apps/personal-page-back/src/environments/environment.prod.ts"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@nrwl/node:execute",
+          "options": {
+            "buildTarget": "personal-page-back:build"
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["apps/personal-page-back/**/*.ts"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/apps/personal-page-back"],
+          "options": {
+            "jestConfig": "apps/personal-page-back/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
     }
   },
   "cli": {
