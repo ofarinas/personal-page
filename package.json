@@ -4,7 +4,8 @@
   "license": "MIT",
   "scripts": {
     "nx": "nx",
-    "start": "nx serve",
+    "start:front": "nx serve personal-page-front",
+    "start:back": "nx serve personal-page-back",
     "build": "nx build",
     "test": "nx test",
     "lint": "nx workspace-lint && nx lint",
@@ -46,7 +47,9 @@
     "reflect-metadata": "^0.1.13",
     "rxjs": "~6.5.5",
     "tslib": "^2.0.0",
-    "zone.js": "^0.10.2"
+    "zone.js": "^0.10.2",
+    "@nestjs/mongoose": "^7.0.1",
+    "mongoose": "^5.9.15"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "0.1100.5",
