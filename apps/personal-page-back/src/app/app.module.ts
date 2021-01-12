@@ -7,10 +7,13 @@ import {ProjectSchema} from './schemas/project-schema';
 import {ProjectController} from './controllers/project/project.controller';
 
 @Module({
-  imports: [MongooseModule.forFeature([{
-    name: 'Project',
-    schema: ProjectSchema
-  }]),
+  imports: [
+    MongooseModule.forFeature([{
+      name: 'Project',
+      schema: ProjectSchema
+    }
+
+    ]),
     MongooseModule.forRoot('mongodb+srv://ofarinas12:ofarinas12@cluster0-6mfsx.mongodb.net/info-page?retryWrites=true&w=majority')],
   controllers: [AppController, ProjectController],
   providers: [AppService, ProjectService],

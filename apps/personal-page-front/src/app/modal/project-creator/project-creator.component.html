@@ -1,3 +1,4 @@
+{{projects$|async|json}}
 <div class="example-container">
   <mat-form-field>
     <mat-label>Title</mat-label>
@@ -27,7 +28,7 @@
 <div class="example-container">
   <mat-form-field>
     <mat-label>Description</mat-label>
-    <input matInput>
+    <textarea matInput></textarea>
   </mat-form-field>
 </div>
 <div class="example-container">
@@ -43,6 +44,6 @@
   </mat-form-field>
 </div>
 <div class="example-button-row center">
-  <button mat-button>Basic</button>
-  <button mat-button color="primary">Primary</button>
+  <button mat-button>Cancel</button>
+  <button mat-button color="primary" (click)="saveProject()">Save</button>
 </div>

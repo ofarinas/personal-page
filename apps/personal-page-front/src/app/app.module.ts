@@ -17,7 +17,19 @@ import {ProjectComponent} from './project/project.component';
 import {ContactComponent} from './contact/contact.component';
 import {FlexLayoutModule} from '@angular/flex-layout';
 import {NavBarComponent} from "./nav-bar/nav-bar.component";
-import { ProjectCreatorComponent } from './modal/project-creator/project-creator.component';
+import {ProjectCreatorComponent} from './modal/project-creator/project-creator.component';
+import {ActionReducer, State, StoreModule} from "@ngrx/store";
+import {reducer} from "./reducers/main.reducer";
+import {storeLogger} from "ngrx-store-logger";
+import {environment} from "../environments/environment";
+
+export function logger(reducer: ActionReducer<State>): any {
+  // default, no options
+  return storeLogger()(reducer);
+}
+
+export const metaReducers = environment.production ? [] : [logger];
+
 
 @NgModule({
   declarations: [
@@ -30,6 +42,7 @@ import { ProjectCreatorComponent } from './modal/project-creator/project-creator
     ProjectCreatorComponent
   ],
   imports: [
+    StoreModule.forRoot({state: reducer}, {metaReducers}),
     FlexLayoutModule,
     BrowserModule,
     AppRoutingModule,
