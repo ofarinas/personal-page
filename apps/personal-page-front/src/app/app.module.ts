@@ -17,6 +17,7 @@ import {ProjectComponent} from './project/project.component';
 import {ContactComponent} from './contact/contact.component';
 import {FlexLayoutModule} from '@angular/flex-layout';
 import {NavBarComponent} from "./nav-bar/nav-bar.component";
+import { ProjectCreatorComponent } from './modal/project-creator/project-creator.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import {NavBarComponent} from "./nav-bar/nav-bar.component";
     ProfileComponent,
     ProjectComponent,
     ContactComponent,
-    NavBarComponent
+    NavBarComponent,
+    ProjectCreatorComponent
   ],
   imports: [
     FlexLayoutModule,
