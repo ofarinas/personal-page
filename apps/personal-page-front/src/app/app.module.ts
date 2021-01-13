@@ -22,8 +22,12 @@ import {ActionReducer, State, StoreModule} from "@ngrx/store";
 import {reducer} from "./reducers/main.reducer";
 import {storeLogger} from "ngrx-store-logger";
 import {environment} from "../environments/environment";
+import {FormsModule} from "@angular/forms";
+import {HttpClientModule} from "@angular/common/http";
+import {ProjectEffect} from "./effect/project.effect";
+import {EffectsModule} from "@ngrx/effects";
 
-export function logger(reducer: ActionReducer<State>): any {
+export function logger(reducer: ActionReducer<State<any>>): any {
   // default, no options
   return storeLogger()(reducer);
 }
@@ -42,7 +46,8 @@ export const metaReducers = environment.production ? [] : [logger];
     ProjectCreatorComponent
   ],
   imports: [
-    StoreModule.forRoot({state: reducer}, {metaReducers}),
+    StoreModule.forRoot(<any>{state: reducer}, {metaReducers}),
+    EffectsModule.forRoot([ProjectEffect]),
     FlexLayoutModule,
     BrowserModule,
     AppRoutingModule,
@@ -53,7 +58,9 @@ export const metaReducers = environment.production ? [] : [logger];
     MatButtonModule,
     MatSidenavModule,
     MatIconModule,
-    MatListModule
+    MatListModule,
+    FormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

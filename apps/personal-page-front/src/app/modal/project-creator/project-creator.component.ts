@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {select, Store} from "@ngrx/store";
-import {addProject} from "../../actions/actions";
+import {addProjectActionBackend} from "../../actions/actions";
 import {Project} from "@personal-page/model";
 
 @Component({
@@ -10,8 +10,10 @@ import {Project} from "@personal-page/model";
 })
 export class ProjectCreatorComponent implements OnInit {
   projects$ = this.store.pipe(select((reducer: any) => reducer.state.projects));
+  project: Project
 
   constructor(public store: Store<{ State }>) {
+    this.project = <Project>{}
   }
 
   ngOnInit(): void {
@@ -19,6 +21,6 @@ export class ProjectCreatorComponent implements OnInit {
   }
 
   saveProject() {
-    this.store.dispatch(addProject({project: <Project>{companyName: 'Hallo'}}))
+    this.store.dispatch(addProjectActionBackend({payload: this.project}))
   }
 }

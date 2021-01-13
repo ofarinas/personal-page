@@ -1,5 +1,6 @@
 export interface Project {
   companyName: string;
+  projectName: string;
   position: string;
   location: string;
   startDate: Date;

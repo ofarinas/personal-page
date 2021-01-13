@@ -1,5 +1,8 @@
-import {State} from "./main.reducer";
-
 export function projectReducer() {
-  return (state, {project}) => (<State>{projects: state.projects.concat([project])});
+  return (state, action) => {
+    return <any>{
+      projects: state.projects.concat(action.payload)
+    }
+  }
 }
+
