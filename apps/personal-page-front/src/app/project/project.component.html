@@ -2,6 +2,45 @@
 <div class="center">
   <button mat-raised-button (click)="openModal()">Add a new Experience</button>
 </div>
+<div *ngFor="let project  of  (project$|async)">
+  <h4> {{project.companyName}}</h4>
+  <mat-accordion style="margin-bottom: 2px">
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          {{project.projectName}}
+          <br>
+        </mat-panel-title>
+        <mat-panel-description>
+          <span>2019</span>
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <h4>Title</h4>
+      <p>{{project.companyName}}</p>
+      <mat-divider></mat-divider>
+      <h4>Location</h4>
+      <p> {{project.location}}</p>
+      <mat-divider></mat-divider>
+      <h4>Date</h4>
+      <p> {{project.startDate}} -{{project.endDate}}</p>
+      <mat-divider></mat-divider>
+      <h4>Description</h4>
+      <p> {{project.description}} </p>
+      <mat-divider></mat-divider>
+      <h4>Technologies</h4>
+      <p> {{project.technologies}}</p>
+      <mat-divider></mat-divider>
+      <h4>URL</h4>
+      <a href="{{project.url}}">{{project.projectName}}</a>
+
+    </mat-expansion-panel>
+  </mat-accordion>
+  <div class="example-button-row center">
+    <button mat-button (click)="removeProject(project)">Remove Project </button>
+    <button mat-button color="primary" (click)="updateProject(project)">Update Project</button>
+  </div>
+
+</div>
 <div>
   <h4> Kaider X Labs A company of Allianz </h4>
   <mat-accordion style="margin-bottom: 2px">

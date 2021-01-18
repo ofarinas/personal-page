@@ -12,8 +12,12 @@ export class ProjectController {
     return this.projectService.getAll();
   }
 
-  @Post()
+  @Post('/add')
   addProject(@Body() project: Project) {
   return this.projectService.add(project)
+  }
+  @Post('/remove')
+  removeProject(@Body() project: Project) {
+  return this.projectService.remove(project)
   }
 }

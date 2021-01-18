@@ -12,7 +12,8 @@ export class ProjectService {
     console.log('before', project);
     const newProject = new this.projectRepository(project);
     const savedProject = await newProject.save();
-    return await this.projectRepository.findById( savedProject.id).exec();
+    console.log('savedProject', savedProject)
+    return await this.projectRepository.findById(savedProject.id).exec();
   }
 
   async edit(project?: Project): Promise<void> {
@@ -20,9 +21,10 @@ export class ProjectService {
     newProject.update();
   }
 
-  async delete(project?: Project): Promise<void> {
+  remove(project?: Project): Project {
     const newProject = new this.projectRepository(project);
     newProject.delete();
+    return project;
   }
 
   async getAll(): Promise<any> {
