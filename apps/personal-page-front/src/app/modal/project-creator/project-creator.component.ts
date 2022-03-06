@@ -1,26 +1,24 @@
-import {Component, OnInit} from '@angular/core';
-import {select, Store} from "@ngrx/store";
-import {addProjectActionBackend} from "../../actions/actions";
-import {Project} from "@personal-page/model";
+import { Component, OnInit } from '@angular/core';
+import { select, Store } from '@ngrx/store';
+import { addProjectActionBackend } from '../../actions/actions';
+import { Project } from '@personal-page/model';
 
 @Component({
   selector: 'personal-page-project-creator',
   templateUrl: './project-creator.component.html',
-  styleUrls: ['./project-creator.component.css']
+  styleUrls: ['./project-creator.component.css'],
 })
 export class ProjectCreatorComponent implements OnInit {
   projects$ = this.store.pipe(select((reducer: any) => reducer.state.projects));
-  project: Project
+  project: Project;
 
   constructor(public store: Store<{ State }>) {
-    this.project = <Project>{}
+    this.project = <Project>{};
   }
 
-  ngOnInit(): void {
+  ngOnInit(): void {}
 
-  }
-
-  saveProject() {
-    this.store.dispatch(addProjectActionBackend({payload: this.project}))
+  saveProject(): void {
+    this.store.dispatch(addProjectActionBackend({ payload: this.project }));
   }
 }

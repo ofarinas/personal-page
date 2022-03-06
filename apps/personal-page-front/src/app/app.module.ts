@@ -1,31 +1,34 @@
-import {BrowserModule} from '@angular/platform-browser';
-import {NgModule} from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
 
-import {AppRoutingModule} from './app-routing.module';
-import {AppComponent} from './app.component';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {DemoMaterialModule} from './material-module';
-import {LayoutModule} from '@angular/cdk/layout';
-import {MatToolbarModule} from '@angular/material/toolbar';
-import {MatButtonModule} from '@angular/material/button';
-import {MatSidenavModule} from '@angular/material/sidenav';
-import {MatIconModule} from '@angular/material/icon';
-import {MatListModule} from '@angular/material/list';
-import {HomeComponent} from './home/home.component';
-import {ProfileComponent} from './profile/profile.component';
-import {ProjectComponent} from './project/project.component';
-import {ContactComponent} from './contact/contact.component';
-import {FlexLayoutModule} from '@angular/flex-layout';
-import {NavBarComponent} from "./nav-bar/nav-bar.component";
-import {ProjectCreatorComponent} from './modal/project-creator/project-creator.component';
-import {ActionReducer, State, StoreModule} from "@ngrx/store";
-import {reducer} from "./reducers/main.reducer";
-import {storeLogger} from "ngrx-store-logger";
-import {environment} from "../environments/environment";
-import {FormsModule} from "@angular/forms";
-import {HttpClientModule} from "@angular/common/http";
-import {ProjectEffect} from "./effect/project.effect";
-import {EffectsModule} from "@ngrx/effects";
+import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { DemoMaterialModule } from './material-module';
+import { LayoutModule } from '@angular/cdk/layout';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatButtonModule } from '@angular/material/button';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatIconModule } from '@angular/material/icon';
+import { MatListModule } from '@angular/material/list';
+import { HomeComponent } from './home/home.component';
+import { ProfileComponent } from './profile/profile.component';
+import { ProjectComponent } from './project/project.component';
+import { ContactComponent } from './contact/contact.component';
+import { FlexLayoutModule } from '@angular/flex-layout';
+import { NavBarComponent } from './nav-bar/nav-bar.component';
+import { ProjectCreatorComponent } from './modal/project-creator/project-creator.component';
+import { WarningModalComponent } from './modal/warning-modal/warning-modal.component';
+
+import { ActionReducer, State, StoreModule } from '@ngrx/store';
+import { reducer } from './reducers/main.reducer';
+import { storeLogger } from 'ngrx-store-logger';
+import { environment } from '../environments/environment';
+import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { ProjectEffect } from './effect/project.effect';
+import { EffectsModule } from '@ngrx/effects';
+import { MatDialogModule } from '@angular/material';
 
 export function logger(reducer: ActionReducer<State<any>>): any {
   // default, no options
@@ -33,7 +36,6 @@ export function logger(reducer: ActionReducer<State<any>>): any {
 }
 
 export const metaReducers = environment.production ? [] : [logger];
-
 
 @NgModule({
   declarations: [
@@ -43,10 +45,11 @@ export const metaReducers = environment.production ? [] : [logger];
     ProjectComponent,
     ContactComponent,
     NavBarComponent,
-    ProjectCreatorComponent
+    WarningModalComponent,
+    ProjectCreatorComponent,
   ],
   imports: [
-    StoreModule.forRoot(<any>{state: reducer}, {metaReducers}),
+    StoreModule.forRoot(<any>{ state: reducer }, { metaReducers }),
     EffectsModule.forRoot([ProjectEffect]),
     FlexLayoutModule,
     BrowserModule,
@@ -60,10 +63,10 @@ export const metaReducers = environment.production ? [] : [logger];
     MatIconModule,
     MatListModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    MatDialogModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule {
-}
+export class AppModule {}
